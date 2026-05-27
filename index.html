@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>以太坊白皮书学习系统 / Ethereum Whitepaper Learning</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>⟠</text></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⟠</span>
+      <div>
+        <div class="brand-title" data-i18n="brand.title">以太坊白皮书学习系统</div>
+        <div class="brand-sub" data-i18n="brand.sub">Ethereum Whitepaper · 渐进式互动学习</div>
+      </div>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn" data-route="home" data-i18n="nav.home">首页</button>
+      <button class="nav-btn" data-route="chapters" data-i18n="nav.chapters">章节</button>
+      <button class="nav-btn" data-route="glossary" data-i18n="nav.glossary">术语表</button>
+      <button class="nav-btn" data-route="progress" data-i18n="nav.progress">进度</button>
+      <button id="lang-toggle" class="lang-btn" title="切换语言 / Toggle language">中 / EN</button>
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <footer class="footer">
+    <div>
+      <span data-i18n="footer.text">本项目用于教学目的，基于 Vitalik Buterin 2013 年以太坊白皮书。</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://ethereum.org/zh/whitepaper/" target="_blank" rel="noopener">原版白皮书 ↗</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/data/i18n.js"></script>
+  <script src="assets/js/data/chapters.js"></script>
+  <script src="assets/js/data/glossary.js"></script>
+  <script src="assets/js/demos.js"></script>
+  <script src="assets/js/components.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
