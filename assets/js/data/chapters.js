@@ -719,5 +719,106 @@ LOG ................... 375 gas / topic` },
           en: "Humans still vote, but rules and execution run via the contract — no central org."
         } }
     ]
+  },
+
+  {
+    id: "ch13",
+    title: { zh: "最新升级与路线图", en: "Latest Upgrades & Roadmap" },
+    subtitle: { zh: "白皮书之后的十余年：从 PoW 到 PoS，走向 Rollup 中心化的未来", en: "A decade past the whitepaper: PoW → PoS, and a rollup-centric future" },
+    sections: [
+      { type: "paragraph",
+        zh: "2013 年的白皮书描述的是「创世版」以太坊：PoW 挖矿、简单的 gasPrice 拍卖、单链扩容。此后十余年间，协议经历了多次大升级，也形成了一份公开、持续演进的长期路线图。这一章补上白皮书之后发生的事。",
+        en: "The 2013 whitepaper describes 'genesis' Ethereum: PoW mining, a simple gasPrice auction, a single scaling chain. In the decade since, the protocol went through several major upgrades and grew a public, ever-evolving long-term roadmap. This chapter fills in what happened after the paper." },
+      { type: "heading", level: 2, zh: "13.1 The Merge：切换到权益证明", en: "13.1 The Merge: switching to Proof of Stake" },
+      { type: "paragraph",
+        zh: "2020 年 12 月，一条独立的「信标链」(Beacon Chain) 上线，开始用权益证明 (PoS) 运行共识，但当时执行交易仍在原来的 PoW 链上。2022 年 9 月 15 日，「The Merge」把执行层焊接到信标链的共识层上，PoW 挖矿被彻底关闭 —— 以太坊自此完全由质押 32 ETH 的验证者出块，而不是矿工。",
+        en: "In December 2020, a separate Beacon Chain launched, running Proof-of-Stake consensus while transaction execution still happened on the old PoW chain. On September 15, 2022, 'The Merge' welded the execution layer onto the Beacon Chain's consensus layer, permanently switching off PoW mining — blocks are now produced by validators staking 32 ETH each, not miners." },
+      { type: "keypoint",
+        zh: "The Merge 没有改变任何用户可见的功能（账户、合约、Gas 都照旧），但让全网耗电量下降了约 99.95%，并把发行率从「挖矿奖励」变为「验证者质押奖励」。",
+        en: "The Merge changed no user-facing feature (accounts, contracts, gas all stayed the same), but cut network-wide energy use by roughly 99.95% and turned issuance from 'mining rewards' into 'validator staking rewards'." },
+      { type: "heading", level: 2, zh: "13.2 主网升级时间线", en: "13.2 Mainnet upgrade timeline" },
+      { type: "code", lang: "text",
+        content:
+`2020-12  信标链上线 (Beacon Chain)         引入 PoS 共识（暂不影响执行层）
+2021-08  London 升级 / EIP-1559           费用改为 baseFee(销毁) + tip(小费)
+2022-09  The Merge                        PoW → PoS，执行层与共识层合并
+2023-04  Shanghai/Capella (上海升级)       验证者质押的 ETH 可以提现
+2024-03  Dencun (坎昆-登科)/ EIP-4844      引入 blob，Rollup 数据费大降 90%+
+2025-05  Pectra (布拉格-伊莱克特拉)         EIP-7702 账户抽象、验证者余额上限提高
+2025~    Fusaka (富士-大阪)                PeerDAS，为完整 Danksharding 铺路` },
+      { type: "tip",
+        zh: "以太坊没有「路线图截止日」的说法——每次硬分叉都把一批 EIP 打包上线，命名习惯是「执行层城市名-共识层城市名」的组合（如 Dencun = Cancun + Deneb）。",
+        en: "Ethereum has no fixed 'roadmap deadline' — each hard fork bundles a batch of EIPs and is named by combining an execution-layer city with a consensus-layer city (e.g. Dencun = Cancun + Deneb)." },
+      { type: "heading", level: 2, zh: "13.3 Vitalik 的「终局」路线图：五个阶段", en: "13.3 Vitalik's 'Endgame' roadmap: five stages" },
+      { type: "paragraph",
+        zh: "2023 年起，Vitalik Buterin 把剩余工作归纳成五个押头韵的阶段，社区常简称为 The Surge / Scourge / Verge / Purge / Splurge。它们并非严格的先后顺序，而是可以并行推进的方向。",
+        en: "Since 2023, Vitalik Buterin has grouped the remaining work into five alliterative stages, often shortened to The Surge / Scourge / Verge / Purge / Splurge. They aren't a strict sequence — the tracks progress in parallel." },
+      { type: "list",
+        zh: [
+          "The Surge（扩容）：以 Rollup 为中心的扩容路线 —— L1 只负责当「数据可用性 + 结算层」，真正的交易执行搬到 L2；配合 Danksharding / PeerDAS 让 blob 空间指数级增长。",
+          "The Scourge（去风险）：治理 MEV（矿工/验证者可提取价值）、抑制中心化质押池和再质押 (Restaking) 带来的系统性风险，保证协议「可信中立」。",
+          "The Verge（瘦身验证）：用 Verkle 树替换部分 Merkle Patricia Trie，让区块证明变得极小，使普通手机也能无需信任地验证整条链（无状态客户端）。",
+          "The Purge（做减法）：清理历史数据和过时功能（如状态过期、历史记录外部化），降低运行一个全节点的长期硬件门槛。",
+          "The Splurge（收尾）：账户抽象、单槽终局性 (Single Slot Finality) 等一堆「不属于前四类但很重要」的改进。"
+        ],
+        en: [
+          "The Surge (scaling): a rollup-centric roadmap — L1 becomes a data-availability + settlement layer while execution moves to L2s; Danksharding/PeerDAS grow blob space exponentially.",
+          "The Scourge (de-risking): tame MEV (miner/validator extractable value) and the systemic risks from centralized staking pools and restaking, to keep the protocol credibly neutral.",
+          "The Verge (slim verification): replace much of the Merkle Patricia Trie with Verkle Trees so block proofs become tiny, letting ordinary phones verify the chain trustlessly (stateless clients).",
+          "The Purge (subtraction): prune historical data and legacy features (state expiry, moving history off-chain) to keep running a full node cheap long-term.",
+          "The Splurge (everything else): account abstraction, Single Slot Finality, and other important odds and ends outside the first four buckets."
+        ] },
+      { type: "heading", level: 2, zh: "13.4 几个值得记住的新概念", en: "13.4 New concepts worth remembering" },
+      { type: "list",
+        zh: [
+          "Proto-Danksharding / Blob（EIP-4844）：给 Rollup 专用的临时大数据「集装箱」，约 18 天后自动过期，不占永久状态，把 L2 手续费打下来一个数量级。",
+          "PeerDAS：让每个节点只需下载、抽样验证一小部分 blob 数据即可确信其可用性，是通往完整 Danksharding 的中间步骤。",
+          "账户抽象 (Account Abstraction, EIP-4337 / EIP-7702)：让普通账户也能拥有「合约钱包」的能力，比如社交恢复、批量交易、由他人代付 Gas。",
+          "单槽终局性 (Single Slot Finality)：目标是让新区块一出现就立刻不可逆，而不是像今天这样等待多个 epoch 才「敲定」。",
+          "再质押 (Restaking，如 EigenLayer)：把已经质押的 ETH「复用」去同时保护其他协议，收益更高但也把风险耦合在了一起——这正是 The Scourge 要重点关注的问题。"
+        ],
+        en: [
+          "Proto-Danksharding / Blobs (EIP-4844): temporary bulk-data 'containers' reserved for rollups; they auto-expire after ~18 days, never bloat permanent state, and cut L2 fees by an order of magnitude.",
+          "PeerDAS: lets each node confirm blob data is available by downloading and sampling only a small slice of it — a stepping stone to full Danksharding.",
+          "Account Abstraction (EIP-4337 / EIP-7702): gives ordinary accounts 'smart wallet' powers — social recovery, batched transactions, someone else sponsoring your gas.",
+          "Single Slot Finality: the goal of making a new block irreversible the instant it appears, instead of waiting several epochs to 'finalize' as today.",
+          "Restaking (e.g. EigenLayer): reuses already-staked ETH to secure other protocols too, for extra yield — but couples their risks together, which is exactly what The Scourge worries about."
+        ] },
+      { type: "blockquote",
+        zh: "「以太坊路线图不是一份写死的文档，而是社区研究进展的实时快照——这一章的具体日期和 EIP 编号会随时间推移而更新。」",
+        en: "\"The Ethereum roadmap isn't a document frozen in time — it's a live snapshot of community research. The exact dates and EIP numbers in this chapter will keep changing.\"" }
+    ],
+    quiz: [
+      { q: { zh: "The Merge（2022 年 9 月）具体做了什么？", en: "What did The Merge (Sept 2022) actually do?" },
+        options: {
+          zh: ["把执行层从 PoW 切换到 PoS 共识", "引入了智能合约", "把手续费改成 Gas 计价", "推出了 Layer 2"],
+          en: ["Switched execution from PoW to PoS consensus", "Introduced smart contracts", "Made fees priced in gas", "Launched Layer 2"]
+        },
+        answer: 0,
+        explain: {
+          zh: "The Merge 只改变共识机制（PoW→PoS），账户、合约、Gas 计价方式在白皮书发布时就已存在。",
+          en: "The Merge only changed the consensus mechanism (PoW→PoS); accounts, contracts and gas pricing already existed since the whitepaper."
+        } },
+      { q: { zh: "EIP-4844 引入的「blob」主要是为了解决什么？", en: "What problem does the 'blob' from EIP-4844 mainly solve?" },
+        options: {
+          zh: ["降低 Rollup 把数据发布到 L1 的成本", "提高矿工出块奖励", "取代 ECDSA 签名", "增加账户的 nonce 位数"],
+          en: ["Lowering the cost for rollups to post data to L1", "Increasing miner block rewards", "Replacing ECDSA signatures", "Extending the nonce field width"]
+        },
+        answer: 0,
+        explain: {
+          zh: "blob 是专为 Rollup 数据可用性设计的临时存储空间，自动过期、不进永久状态，让 L2 手续费大幅下降。",
+          en: "Blobs are temporary storage built for rollup data availability; they expire automatically, never enter permanent state, and sharply cut L2 fees."
+        } },
+      { q: { zh: "在「终局」路线图里，The Verge 的核心目标是？", en: "In the 'Endgame' roadmap, what is The Verge mainly about?" },
+        options: {
+          zh: ["用 Verkle 树实现极小证明，让无状态客户端也能验证链", "把所有交易搬到中心化服务器", "取消 Gas 机制", "禁止再质押"],
+          en: ["Using Verkle trees for tiny proofs so stateless clients can verify the chain", "Moving all transactions to a centralized server", "Removing the gas mechanism", "Banning restaking"]
+        },
+        answer: 0,
+        explain: {
+          zh: "The Verge 关注验证的「瘦身」：Verkle 树让证明足够小，普通设备也能无需信任地验证全链状态。",
+          en: "The Verge is about slimming down verification: Verkle trees make proofs small enough for ordinary devices to trustlessly verify the full chain state."
+        } }
+    ]
   }
 ];

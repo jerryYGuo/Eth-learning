@@ -10,7 +10,7 @@ window.I18N = {
     "footer.text": "本项目用于教学目的，基于 Vitalik Buterin 2013 年以太坊白皮书。",
 
     "home.heroTitle": "从零开始，读懂以太坊",
-    "home.heroDesc": "把厚厚的白皮书拆成 12 个循序渐进的小节，每节配图解、双语对照、互动演示和小测验。",
+    "home.heroDesc": "把厚厚的白皮书拆成 13 个循序渐进的小节（含最新升级与路线图），每节配图解、双语对照、互动演示和小测验。",
     "home.heroBtn": "开始第一节 →",
     "home.f1.title": "图文讲解",
     "home.f1.desc": "用类比、图示把复杂概念拆成直观片段。",
@@ -61,7 +61,7 @@ window.I18N = {
     "footer.text": "For educational use. Based on the 2013 Ethereum Whitepaper by Vitalik Buterin.",
 
     "home.heroTitle": "Read the Ethereum Whitepaper, the easy way",
-    "home.heroDesc": "12 bite-sized lessons with illustrations, bilingual text, interactive demos and quizzes.",
+    "home.heroDesc": "13 bite-sized lessons — now with the latest upgrades & roadmap — with illustrations, bilingual text, interactive demos and quizzes.",
     "home.heroBtn": "Start Lesson 1 →",
     "home.f1.title": "Visual explanations",
     "home.f1.desc": "Break down abstract ideas with analogies and diagrams.",
