@@ -745,7 +745,8 @@ LOG ................... 375 gas / topic` },
 2023-04  Shanghai/Capella (上海升级)       验证者质押的 ETH 可以提现
 2024-03  Dencun (坎昆-登科)/ EIP-4844      引入 blob，Rollup 数据费大降 90%+
 2025-05  Pectra (布拉格-伊莱克特拉)         EIP-7702 账户抽象、验证者余额上限提高
-2025~    Fusaka (富士-大阪)                PeerDAS，为完整 Danksharding 铺路` },
+2025~    Fusaka (富士-大阪)                PeerDAS 上主网、BPO 分叉逐步调高 blob 数量
+2026~    Glamsterdam (格拉斯哥-阿姆斯特丹)   计划中：ePBS、区块级访问列表 BAL（日期未定）` },
       { type: "tip",
         zh: "以太坊没有「路线图截止日」的说法——每次硬分叉都把一批 EIP 打包上线，命名习惯是「执行层城市名-共识层城市名」的组合（如 Dencun = Cancun + Deneb）。",
         en: "Ethereum has no fixed 'roadmap deadline' — each hard fork bundles a batch of EIPs and is named by combining an execution-layer city with a consensus-layer city (e.g. Dencun = Cancun + Deneb)." },
@@ -784,6 +785,32 @@ LOG ................... 375 gas / topic` },
           "Single Slot Finality: the goal of making a new block irreversible the instant it appears, instead of waiting several epochs to 'finalize' as today.",
           "Restaking (e.g. EigenLayer): reuses already-staked ETH to secure other protocols too, for extra yield — but couples their risks together, which is exactly what The Scourge worries about."
         ] },
+      { type: "heading", level: 2, zh: "13.5 下一站：Fusaka 与 Glamsterdam", en: "13.5 Coming up: Fusaka and Glamsterdam" },
+      { type: "paragraph",
+        zh: "Pectra 之后的下一次大升级是 Fusaka（Fulu + Osaka）。它的主角是 PeerDAS 正式上主网，让节点只抽样验证一小部分 blob 数据就能确认可用性；配合它的还有一系列 BPO（Blob Parameter Only）分叉——不需要完整硬分叉，只改「每个区块允许多少 blob」这一个参数，就能持续、渐进地把 Rollup 的数据带宽调高。",
+        en: "The next major upgrade after Pectra is Fusaka (Fulu + Osaka). Its headline feature is PeerDAS going live on mainnet, letting nodes confirm data availability by sampling only a slice of each blob. Alongside it come BPO (Blob Parameter Only) forks — lightweight forks that tweak just 'how many blobs per block', letting rollup data bandwidth increase gradually without a full hard fork each time." },
+      { type: "paragraph",
+        zh: "再往后被称为 Glamsterdam（Glasgow + Amsterdam，命名沿用「执行层城市+共识层城市」传统），目前仍在提案与征集阶段，讨论最多的两个方向是：①ePBS（Enshrined Proposer-Builder Separation，EIP-7732）——把「谁打包区块」和「谁提议区块」在协议层面正式分开，削弱验证者单方面操纵交易顺序攫取 MEV 的能力；②区块级访问列表 (Block-level Access Lists, BAL)——提前告诉节点一个区块里所有交易会读写哪些存储槽，从而让交易并行执行、加快节点追赶区块的速度。",
+        en: "The one after that is nicknamed Glamsterdam (Glasgow + Amsterdam, following the same execution-city + consensus-city naming convention). It's still in the proposal and research stage; the two most-discussed directions are: (1) ePBS (Enshrined Proposer-Builder Separation, EIP-7732) — formally splitting 'who builds a block' from 'who proposes it' at the protocol level, to weaken a validator's ability to unilaterally reorder transactions for MEV; (2) Block-level Access Lists (BAL) — telling nodes upfront which storage slots every transaction in a block will touch, so transactions can execute in parallel and nodes can catch up to the chain tip faster." },
+      { type: "tip",
+        zh: "这些名字和日期都不是「已发布产品」，而是研究路线图上的下一站——具体范围随时可能因测试结果或社区共识而调整，学习时把重点放在「解决什么问题」而不是死记日期。",
+        en: "These names and dates aren't shipped products — they're the next stops on a research roadmap, and scope can shift with test results or community consensus. Focus on 'what problem does this solve', not memorizing dates." },
+      { type: "heading", level: 2, zh: "13.6 更远的未来：完整 Danksharding 之后", en: "13.6 Further out: life after full Danksharding" },
+      { type: "list",
+        zh: [
+          "完整 Danksharding：把每个区块能承载的 blob 数量从两位数推向数百甚至上千，让 L2 的综合吞吐量对标传统支付网络（如 Visa 级别的 TPS）。",
+          "无状态客户端全面落地：配合 Verkle 树（未来可能演进为更抗量子的多项式承诺方案），验证节点不必再存储完整状态，只带着证明就能验证每个区块。",
+          "单槽终局性 (SSF)：把交易「不可逆确认」所需时间从当前的多个 epoch（约 15 分钟）压缩到一个 slot（12 秒），让链上结算体验接近传统清算系统。",
+          "抗量子迁移：把账户签名从 ECDSA 逐步过渡到抗量子签名方案，是 Splurge 阶段讨论较多、但优先级取决于量子计算实际进展的长线课题。",
+          "EVM 对象格式 (EOF)：一套重新设计字节码结构、给静态分析和未来升级留空间的提案，社区仍在讨论是否值得为此承担迁移成本。"
+        ],
+        en: [
+          "Full Danksharding: push the blob count per block from double digits into the hundreds or thousands, so aggregate L2 throughput rivals traditional payment networks (Visa-scale TPS).",
+          "Stateless clients everywhere: paired with Verkle trees (which may later evolve into more quantum-resistant polynomial commitments), validating nodes no longer store the full state — a proof alongside the block is enough.",
+          "Single Slot Finality (SSF): shrink the time for a transaction to become irreversible from several epochs (~15 minutes) today down to a single slot (12 seconds), closer to the feel of traditional settlement systems.",
+          "Post-quantum migration: gradually moving account signatures off ECDSA to quantum-resistant schemes — a long-horizon Splurge-era topic whose priority depends on how fast real quantum computing advances.",
+          "EVM Object Format (EOF): a proposal to restructure EVM bytecode to ease static analysis and future upgrades; the community is still debating whether the migration cost is worth it."
+        ] },
       { type: "blockquote",
         zh: "「以太坊路线图不是一份写死的文档，而是社区研究进展的实时快照——这一章的具体日期和 EIP 编号会随时间推移而更新。」",
         en: "\"The Ethereum roadmap isn't a document frozen in time — it's a live snapshot of community research. The exact dates and EIP numbers in this chapter will keep changing.\"" }
@@ -818,6 +845,26 @@ LOG ................... 375 gas / topic` },
         explain: {
           zh: "The Verge 关注验证的「瘦身」：Verkle 树让证明足够小，普通设备也能无需信任地验证全链状态。",
           en: "The Verge is about slimming down verification: Verkle trees make proofs small enough for ordinary devices to trustlessly verify the full chain state."
+        } },
+      { q: { zh: "BPO（Blob Parameter Only）分叉的特点是？", en: "What's distinctive about a BPO (Blob Parameter Only) fork?" },
+        options: {
+          zh: ["只调整每区块 blob 数量等参数，不需要完整硬分叉", "重写整个 EVM", "取消所有验证者质押", "把执行层换成新语言"],
+          en: ["Tweaks a parameter like blobs-per-block without a full hard fork", "Rewrites the entire EVM", "Cancels all validator stakes", "Replaces the execution layer with a new language"]
+        },
+        answer: 0,
+        explain: {
+          zh: "BPO 分叉是 Fusaka 引入的轻量升级方式：只改 blob 相关参数，让 Rollup 数据带宽可以持续渐进地提高。",
+          en: "BPO forks are a lightweight upgrade mechanism introduced with Fusaka: they change only blob-related parameters, letting rollup data bandwidth grow incrementally."
+        } },
+      { q: { zh: "Glamsterdam 讨论中的 ePBS（EIP-7732）主要想解决什么？", en: "What problem does ePBS (EIP-7732), discussed for Glamsterdam, mainly target?" },
+        options: {
+          zh: ["在协议层面分离「打包区块」与「提议区块」，削弱验证者操纵交易顺序攫取 MEV 的能力", "让区块变得更大", "取消 Gas 费", "把 PoS 换回 PoW"],
+          en: ["Splitting block-building from block-proposing at the protocol level, weakening a validator's ability to extract MEV by reordering TXs", "Making blocks bigger", "Removing gas fees", "Reverting PoS back to PoW"]
+        },
+        answer: 0,
+        explain: {
+          zh: "ePBS 把「构建区块内容」和「提议区块」的角色在协议内正式分开，是 The Scourge 抑制 MEV 集中风险的具体实现之一。",
+          en: "ePBS formally separates the 'build block content' role from the 'propose block' role at the protocol level — one concrete way The Scourge tackles MEV-centralization risk."
         } }
     ]
   }
